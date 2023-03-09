@@ -11,6 +11,8 @@ Keep go.mod and go.sum clean!
 
 [action.yaml](action.yaml)
 
+Please see [go-mod-tidy-workflow](https://github.com/suzuki-shunsuke/go-mod-tidy-workflow) too.
+
 ## Requirements
 
 - [Go](https://go.dev/)
