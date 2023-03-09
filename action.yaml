@@ -7,6 +7,8 @@ inputs:
   skip_push:
     required: false
     default: false
+  github_token:
+    required: true
 runs:
   using: composite
   steps:
@@ -48,6 +50,8 @@ runs:
     - shell: bash
       working-directory: ${{inputs.working_directory}}
       if: "! fromJSON(inputs.skip_push)"
+      env:
+        GITHUB_TOKEN: ${{inputs.github_token}}
       run: |
         if [ -f go.sum ]; then
           if git diff --cached --exit-code go.mod go.sum; then
