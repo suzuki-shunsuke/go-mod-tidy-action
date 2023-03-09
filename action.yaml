@@ -8,7 +8,7 @@ inputs:
     required: false
     default: false
   github_token:
-    required: true
+    required: false
 runs:
   using: composite
   steps:
@@ -32,7 +32,7 @@ runs:
       if: fromJSON(inputs.skip_push)
       run: |
         if ! git diff --cached --exit-code go.mod; then
-          echo "::error ::go.mod is changed. Please run `go mod tidy`"
+          echo "::error ::go.mod is changed. Please run 'go mod tidy'"
           exit 1
         fi
     - shell: bash
@@ -43,7 +43,7 @@ runs:
           exit 0
         fi
         if ! git diff --cached --exit-code go.sum; then
-          echo "::error ::go.sum is changed. Please run `go mod tidy`"
+          echo "::error ::go.sum is changed. Please run 'go mod tidy'"
           exit 1
         fi
 
