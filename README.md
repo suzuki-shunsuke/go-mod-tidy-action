@@ -58,7 +58,7 @@ jobs:
           app_id: ${{secrets.APP_ID}}
           private_key: ${{secrets.APP_PRIVATE_KEY}}
       - name: go mod tidy
-        uses: suzuki-shunsuke/go-mod-tidy-action@main
+        uses: suzuki-shunsuke/go-mod-tidy-action@67d43e82d9b5b3280b7082052dce18b77649476c # v0.1.1
         with:
           github_token: ${{steps.generate_token.outputs.token}}
 ```
