@@ -10,9 +10,46 @@ GitHub Actions to run `go mod tidy` and push a commit to a pull request
 - [Git](https://git-scm.com/)
 - [int128/ghcp](https://github.com/int128/ghcp)
 
+## GitHub Access Token
+
+The following permissions are required to push a commit.
+
+- `contents: write`
+
+To trigger GitHub Actions Workflows by a new commit, we recommend using GitHub App token or personal access token rather than `${{github.token}}`.
+
 ## Usage
 
 ```yaml
+---
+name: go mod tidy
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout HEAD
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Set up Go
+        uses: actions/setup-go@v3.5.0
+        with:
+          go-version: 1.20.1
+      - name: Install int128/ghcp
+        uses: aquaproj/aqua-installer@v2.0.2
+        with:
+          aqua_version: v1.35.0
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{secrets.APP_ID}}
+          private_key: ${{secrets.APP_PRIVATE_KEY}}
+      - name: go mod tidy
+        uses: suzuki-shunsuke/go-mod-tidy-action@main
+        with:
+          github_token: ${{steps.generate_token.outputs.token}}
 ```
 
 ## Example

@@ -78,11 +78,11 @@ runs:
 
         if [ -f go.sum ]; then
           ghcp commit -r "$GITHUB_REPOSITORY" -b "$branch" \
-            -m "chore(aqua): update go.mod and go.sum" \
+            -m "chore(go): go mod tidy" \
             $(git diff --name-only --cached go.mod go.sum)
         else
           ghcp commit -r "$GITHUB_REPOSITORY" -b "$branch" \
-            -m "chore(aqua): update go.mod and go.sum" \
+            -m "chore(go): go mod tidy" \
             go.mod
         fi
 
