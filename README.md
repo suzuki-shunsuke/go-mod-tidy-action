@@ -19,6 +19,8 @@ Please see [go-mod-tidy-workflow](https://github.com/suzuki-shunsuke/go-mod-tidy
 - [Git](https://git-scm.com/)
 - [int128/ghcp](https://github.com/int128/ghcp)
 
+:bulb: You can install ghcp by [aqua](https://aquaproj.github.io/) `aqua g -i int128/ghcp`
+
 ## GitHub Access Token
 
 The following permissions are required to push a commit.
